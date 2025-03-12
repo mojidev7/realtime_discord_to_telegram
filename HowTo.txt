@@ -1,0 +1,62 @@
+
+
+1. unzip this project in a desired directory. 
+2. run these command to install requirements
+
+chmod +x requirements.bash
+bash requirements.bash
+
+3. grab TG channel id using this toturial https://neliosoftware.com/content/help/how-do-i-get-the-channel-id-in-telegram/
+and use it in .env file: TG_CHANNEL_ID
+
+4. grab TG token bot from @fatherbot and use it in .env file: TG_TOKEN
+
+5. login into the discord using your browser 
+then open developer tools and open console tab. 
+
+then run this command: allow paste 
+and then paste this command to copy your discord token in to clipboard
+
+window.webpackChunkdiscord_app.push([
+  [Math.random()],
+  {},
+  req => {
+    if (!req.c) return;
+    for (const m of Object.keys(req.c)
+      .map(x => req.c[x].exports)
+      .filter(x => x)) {
+      if (m.default && m.default.getToken !== undefined) {
+        return copy(m.default.getToken());
+      }
+      if (m.getToken !== undefined) {
+        return copy(m.getToken());
+      }
+    }
+  },
+]);
+console.log('%cWorked!', 'font-size: 50px');
+console.log(`%cYou now have your token in the clipboard!`, 'font-size: 16px');
+
+then paste it in .env file: DISCORD_TOKEN
+
+6. Enable developer tools in your discord app to see your desired channel id 
+then right click on your desirect channel and select Copy Channel ID and use it in .env 
+file as: DISCORD_CHANNEL_ID
+
+7. Select your desire options in .env file 
+
+CACHE_HOUR=1  // how many hours should wait for edit a message
+START_HOUR=18 // start hour of the session in UTC
+START_MINUTE=58 // start minute of the session in UTC
+END_HOUR=18 // end hour of the process in UTC
+END_MINUTE=59 // end minute of the process in UTC 
+
+8. start the process using command 
+npm start 
+
+it will running based on the schedule and also will start after reboot :))
+
+note: 
+watching the app with command: pm2 status
+
+and all the logs saved in script.log file. 
