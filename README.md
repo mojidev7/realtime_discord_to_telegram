@@ -21,26 +21,81 @@ A real-time message relay system that forwards messages from Discord channels to
 - Discord Server with admin permissions
 - Telegram group/channel where bot is admin
 
-## 🚀 Installation
+## 🚀 Installation & Setup
 
-1. Clone the repository:
+1. Unzip this project in your desired directory.
 
-   ```bash
-   git clone https://github.com/mojidev7/realtime_discord_to_telegram.git
-   cd realtime_discord_to_telegram
-   ```
-
-2. Install dependencies:
+2. Run these commands to install requirements:
 
    ```bash
-   pip install -r requirements.txt
+   chmod +x requirements.bash
+   bash requirements.bash
    ```
 
-3. Configure your environment variables:
-   ```bash
-   cp .env.example .env
-   # Edit .env with your Discord and Telegram tokens
+3. Grab your Telegram channel ID using [this tutorial](https://neliosoftware.com/content/help/how-do-i-get-the-channel-id-in-telegram/) and add it to the `.env` file as `TG_CHANNEL_ID`.
+
+4. Get your Telegram bot token from [@BotFather](https://t.me/botfather) and add it to the `.env` file as `TG_TOKEN`.
+
+5. Get your Discord token:
+
+   - Login to Discord using your browser
+   - Open developer tools and navigate to the console tab
+   - Run: `allow paste`
+   - Paste this script to copy your Discord token to clipboard:
+
+   ```javascript
+   window.webpackChunkdiscord_app.push([
+     [Math.random()],
+     {},
+     (req) => {
+       if (!req.c) return;
+       for (const m of Object.keys(req.c)
+         .map((x) => req.c[x].exports)
+         .filter((x) => x)) {
+         if (m.default && m.default.getToken !== undefined) {
+           return copy(m.default.getToken());
+         }
+         if (m.getToken !== undefined) {
+           return copy(m.getToken());
+         }
+       }
+     },
+   ]);
+   console.log("%cWorked!", "font-size: 50px");
+   console.log(
+     `%cYou now have your token in the clipboard!`,
+     "font-size: 16px"
+   );
    ```
+
+   - Add this token to the `.env` file as `DISCORD_TOKEN`
+
+6. Get your Discord channel ID:
+
+   - Enable developer mode in Discord settings
+   - Right-click on your desired channel and select "Copy Channel ID"
+   - Add this ID to the `.env` file as `DISCORD_CHANNEL_ID`
+
+7. Configure your schedule options in the `.env` file:
+
+   ```
+   CACHE_HOUR=1     # How many hours to wait for message edits
+   START_HOUR=18    # Start hour of the session in UTC
+   START_MINUTE=58  # Start minute of the session in UTC
+   END_HOUR=18      # End hour of the process in UTC
+   END_MINUTE=59    # End minute of the process in UTC
+   ```
+
+8. Start the process using:
+   ```bash
+   npm start
+   ```
+   The bot will run according to the schedule and also start automatically after system reboot.
+
+**Note:**
+
+- Monitor the app with: `pm2 status`
+- All logs are saved in the `script.log` file
 
 ## ⚙️ Configuration
 
@@ -60,17 +115,7 @@ Edit the `config.json` file to map Discord channels to Telegram chats:
 
 ## 🔧 Usage
 
-Run the bot with:
-
-```bash
-python main.py
-```
-
-For production deployment, consider using a process manager like PM2:
-
-```bash
-pm2 start main.py --name discord-telegram-relay --interpreter python3
-```
+After setup, the bot will automatically forward messages based on your configuration and schedule. No additional intervention is required unless you want to modify settings.
 
 ## 📝 Example
 
